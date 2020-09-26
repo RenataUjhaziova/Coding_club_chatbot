@@ -1,0 +1,467 @@
+{
+  "name": "Nákupný chatbot",
+  "intents": [
+    {
+      "intent": "navrh_obchodov",
+      "examples": [
+        {
+          "text": "Kde mozem kupit darcek na narodeniny mame?"
+        },
+        {
+          "text": "Viem kupit  v Auparku aj sladkosti na narodeniny?"
+        },
+        {
+          "text": "Predavaju v Auparku nejake kvety na narodeniny?"
+        },
+        {
+          "text": "V ktorom obchode kupim nejake darceky na narodeniny?"
+        },
+        {
+          "text": "Predavate v Auparku knizky na narodeniny?"
+        },
+        {
+          "text": "Kde kupim pohladnicu na narodeniny mame?"
+        }
+      ]
+    },
+    {
+      "intent": "pozdravy_uvitanie",
+      "examples": [
+        {
+          "text": "dobre rano"
+        },
+        {
+          "text": "cau"
+        },
+        {
+          "text": "dobry den"
+        },
+        {
+          "text": "ahoj"
+        },
+        {
+          "text": "zdravim"
+        }
+      ]
+    },
+    {
+      "intent": "podakovanie",
+      "examples": [
+        {
+          "text": "dakujem pekne"
+        },
+        {
+          "text": "diki"
+        },
+        {
+          "text": "vdaka krasne"
+        },
+        {
+          "text": "dakujem velmi pekne za radu"
+        },
+        {
+          "text": "dik"
+        },
+        {
+          "text": "som ti zaviazany"
+        },
+        {
+          "text": "vdaka za pomoc, mas to u mna"
+        }
+      ]
+    },
+    {
+      "intent": "pozdravy_ukoncenie",
+      "examples": [
+        {
+          "text": "maj sa"
+        },
+        {
+          "text": "dovidenia"
+        },
+        {
+          "text": "dovi"
+        },
+        {
+          "text": "zbohom"
+        },
+        {
+          "text": "pekny den"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "druhy_darcekov",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "kvety",
+          "synonyms": [
+            "kvet",
+            "kyticu"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "pohladnica",
+          "synonyms": [
+            "Narodeninove blahozelanie",
+            "pohladnice",
+            "pohladnicu"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "narodeninove_darceky",
+          "synonyms": [
+            "Narodeninove darceky",
+            "Darceky s narodeninovym motivom",
+            "Narodeninove hrnceky",
+            "Narodeninove suveniry"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "kniha",
+          "synonyms": [
+            "knizku",
+            "knihu"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "cokolada",
+          "synonyms": [
+            "sladkosti",
+            "dezert",
+            "cokoladu",
+            "bonbonieru",
+            "salonky"
+          ]
+        }
+      ]
+    }
+  ],
+  "language": "cs",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-09-20"
+    }
+  },
+  "skill_id": "0cc2a637-0179-4ac4-8154-80adad41d68c",
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_17_1549288543950",
+      "event_name": "focus",
+      "dialog_node": "handler_19_1549288543950",
+      "previous_sibling": "handler_18_1549288543950"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_17_1549288543950",
+      "context": {
+        "druhy_darcekov_2": "@druhy_darcekov:kvety"
+      },
+      "conditions": "@druhy_darcekov:kvety",
+      "event_name": "input",
+      "dialog_node": "handler_18_1549288543950"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Najvacsi vyber roznych druhov narodeninovych darcekov najdete v darcekovom obchode Albi na prizemi. Ak este nemate jasnu predstavu, co hladate, tak urcite zajdite najprv do tohto obchodu."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_4_1549284658056",
+      "metadata": {},
+      "conditions": "@druhy_darcekov:narodeninove_darceky",
+      "dialog_node": "node_3_1549288983845",
+      "previous_sibling": "node_2_1549288970456"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Samozrejme, mozete u nas kupit aj rozne cokolady a ine sladkosti na narodeniny. Siroky vyber najdete v Bille na prizemi, ale odporucam zajst aj do Albi na prvom poschodi."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_4_1549284658056",
+      "metadata": {},
+      "conditions": "@druhy_darcekov:cokolada",
+      "dialog_node": "node_4_1549288995363",
+      "previous_sibling": "node_3_1549288983845"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1549284658056",
+      "variable": "$druhy_darcekov",
+      "dialog_node": "slot_12_1549288382160",
+      "previous_sibling": "handler_10_1549288382143"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ak chcete na narodeniny podarovat peknu knizku, siroky sortiment kniziek najdete prave v knihkupectve Patha Rhei na 1. poschodi."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_4_1549284658056",
+      "metadata": {},
+      "conditions": "@druhy_darcekov:kniha",
+      "dialog_node": "node_6_1549289898947",
+      "previous_sibling": "node_5_1549289004872"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_4_1549284658056",
+      "disabled": true,
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_10_1549288382143",
+      "previous_sibling": "node_6_1549289898947"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Siroky vyber narodeninovych pohladnic ponuka darcekovy obchod Albi na prizemi, ale pohladnice pre tuto prilezitost mozete vybrat aj v Panta Rhei na 1. poschodi. Pohladnice mozete najst aj v papiernictvach na 1. poschodi - pozrite papiernictvo Sevt a KOH-I-NOOR alebo v novinovych stankoch na prizemi."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_4_1549284658056",
+      "metadata": {},
+      "conditions": "@druhy_darcekov:pohladnica",
+      "dialog_node": "node_5_1549289004872",
+      "previous_sibling": "node_4_1549288995363"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1549284658056",
+      "variable": "$druhy_darcekov_2",
+      "dialog_node": "slot_17_1549288543950",
+      "previous_sibling": "slot_12_1549288382160"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Specialne Narodeninove kytice pre Vas pripravia v kvetinarstve Kvety Victor na prizemi oproti Terranove, ale krasne kytice kupite aj v Bille na prizemi."
+              }
+            ],
+            "response_type": "text"
+          }
+        ]
+      },
+      "parent": "node_4_1549284658056",
+      "metadata": {},
+      "conditions": "@druhy_darcekov:kvety",
+      "dialog_node": "node_2_1549288970456"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_12_1549288382160",
+      "event_name": "focus",
+      "dialog_node": "handler_14_1549288382160",
+      "previous_sibling": "handler_13_1549288382160"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_12_1549288382160",
+      "context": {
+        "druhy_darcekov": "@druhy_darcekov:cokolada"
+      },
+      "conditions": "@druhy_darcekov:cokolada",
+      "event_name": "input",
+      "dialog_node": "handler_13_1549288382160"
+    },
+    {
+      "type": "standard",
+      "title": "Podakovanie",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Za malicko."
+              },
+              {
+                "text": "Rad som Vam pomohol."
+              },
+              {
+                "text": "Nie je za co, aj nabuduce."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#podakovanie",
+      "dialog_node": "node_2_1549281407184",
+      "previous_sibling": "node_1_1549281217004"
+    },
+    {
+      "type": "standard",
+      "title": "Pozdrav",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Dobry den. Som tu, aby som vam poradil, kde mozete kupit tovar rozneho druhu na narodeniny v Auparku v Kosiciach."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#pozdravy_uvitanie",
+      "dialog_node": "node_1_1549281217004",
+      "previous_sibling": "node_4_1549284658056"
+    },
+    {
+      "type": "standard",
+      "title": "Odporucenie obchodov",
+      "output": {},
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#navrh_obchodov",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_4_1549284658056",
+      "digress_out": "allow_all",
+      "previous_sibling": "Vítejte"
+    },
+    {
+      "type": "standard",
+      "title": "Dovidenia",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Dakujem Vam velmi pekne za rozhovor. Pekny zvysok dna Vam prajem!"
+              },
+              {
+                "text": "Dakujem krasne za rozhovor a prajem uspesne nakupy!"
+              },
+              {
+                "text": "Vdaka pekne za rozhovor. Skvele nakupovanie!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#pozdravy_ukoncenie",
+      "dialog_node": "node_3_1549281529894",
+      "previous_sibling": "node_2_1549281407184"
+    },
+    {
+      "type": "standard",
+      "title": "V ostatnych pripadoch",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Nerozumiem. Skuste prosim preformulovat vasu otazku."
+              },
+              {
+                "text": "Prepacte, nerozumel som. Mozete sa prosim spytat este raz, ale trochu inak?"
+              },
+              {
+                "text": "Nepochopil som uplne, co sa ma pytate. Mozete prosim preformulovat otazku?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "V ostatních případech",
+      "previous_sibling": "node_3_1549281529894"
+    },
+    {
+      "type": "standard",
+      "title": "Vitajte",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Dobry den, volam sa Chris a som chatbot. Ako Vam mozem pomoct? Rad Vam poradim, kde je mozne kupit tovar rozneho druhu na narodeniny v Auparku v Kosiciach."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "welcome",
+      "dialog_node": "Vítejte"
+    }
+  ],
+  "workspace_id": "0cc2a637-0179-4ac4-8154-80adad41d68c",
+  "counterexamples": [
+    {
+      "text": "este jednu vec"
+    }
+  ],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}
